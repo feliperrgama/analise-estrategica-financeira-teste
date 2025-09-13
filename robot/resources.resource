@@ -3,17 +3,42 @@ Library    SeleniumLibrary
 
 
 *** Variables ***
-${URL}    https://localhost:3000/
-&{LIST_FRUTAS}    banana=amarela    morango=vermelho    uva=roxa
-@{PESSOA}    Felipe    22    1.80    True
-
+${URL}        http://localhost:3000/
+${LOCATOR_LOGO_CONEXAI_HOMEPAGE}     xpath da logo da conexai na homepage - tela de conversa
 
 
 
 *** Keywords ***
 Abrir O Navegador
-    Open Browser    ${URL}    browser=chrome
+    Open Browser    browser=chrome
     Maximize Browser Window
 
 Fechar O Navegador
     Close All Browsers
+
+Acessar url do projeto
+    Go To    url=${URL}
+    Sleep    time_=5s
+
+Realizar login válido do usuário
+    Click Element    locator=//*[@id="username"]
+    Sleep    time_=3s
+    Input Text    locator=//*[@id="username"]    text=cepedirestic36
+    Click Element    locator=//*[@id="password"]
+    Sleep    time_=3s
+    Input Text    locator=//*[@id="password"]    text=dC2^OuQ$g1O4
+    Sleep    time_=1s
+    Click Button    locator=//*[@id="app"]/div/div[8]/form/button
+    Sleep    time_=25s
+    Wait Until Page Contains Element    locator=
+
+Realizar login inválido do usuário
+    Click Element    locator=//*[@id="username"]
+    Sleep    time_=3s
+    Input Text    locator=//*[@id="username"]    text=usuario_invalido
+    Click Element    locator=//*[@id="password"]
+    Sleep    time_=3s
+    Input Text    locator=//*[@id="password"]    text=senha_invalida
+    Sleep    time_=1s
+    Click Button    locator=//*[@id="app"]/div/div[8]/form/button
+    Sleep    time_=25s
