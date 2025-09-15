@@ -4,7 +4,8 @@ Library    SeleniumLibrary
 
 *** Variables ***
 ${URL}        http://localhost:3000/
-${LOCATOR_LOGO_CONEXAI_HOMEPAGE}     xpath da logo da conexai na homepage - tela de conversa
+${LOCATOR_LOGO_CONEXAI_HOMEPAGE}     //*[@id="app"]/div/div[1]/div/div[1]/div[1]/img
+${BTN-START}   //*[@class="btn"]   #X path do botão start do chat
 
 
 
@@ -30,7 +31,7 @@ Realizar login válido do usuário
     Sleep    time_=1s
     Click Button    locator=//*[@id="app"]/div/div[8]/form/button
     Sleep    time_=25s
-    Wait Until Page Contains Element    locator=
+    Wait Until Page Contains Element    locator=${BTN-START}  timeout=5s
 
 Realizar login inválido do usuário
     Click Element    locator=//*[@id="username"]
@@ -42,3 +43,10 @@ Realizar login inválido do usuário
     Sleep    time_=1s
     Click Button    locator=//*[@id="app"]/div/div[8]/form/button
     Sleep    time_=25s
+
+Entrar no chat
+    Wait Until Page Contains Element    locator=${BTN-START}  timeout=5s
+    Click Element    locator=${BTN-START}
+    Sleep    time_=5s
+    Wait Until Page Contains Element    locator=${LOCATOR_LOGO_CONEXAI_HOMEPAGE}  timeout=5s
+    Element Should Be Visible    locator=${LOCATOR_LOGO_CONEXAI_HOMEPAGE} 
