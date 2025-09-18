@@ -93,22 +93,38 @@ Verificar resposta do chat
         Log    A resposta do modelo foi carregada! (O modelo gerou uma resposta)${\n}
         Log    message=/=====================/${\n}
 
+        Log To Console    message=/=====================/${\n}
+        Log To Console   A resposta do modelo foi carregada! (O modelo gerou uma resposta)${\n}
+        Log To Console    message=/=====================/${\n}
+
         ${RESPOSTA_DO_MODELO}=   Get Text    locator=//*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div/div[2]
-        Log    ${RESPOSTA_DO_MODELO}
+        Log    ${\n} ${RESPOSTA_DO_MODELO} ${\n}
         IF    ${RESPOSTA_DO_MODELO} == *Resposta do modelo via API*
             Log    message=/=====================/${\n}
             Log    message=A resposta do modelo foi carregada corretamente.
             Log    message=/=====================/${\n}
+
+            Log To Console    message=/=====================/${\n}
+            Log To Console    message=A resposta do modelo foi carregada corretamente.
+            Log To Console    message=/=====================/${\n}
         ELSE
             Log    message=/=====================/${\n}
             Fail    A resposta do modelo não foi carregada corretamente.message
             Log    message=/=====================/${\n}
+
+            Log To Console    message=/=====================/${\n}
+            Log To Console    A resposta do modelo não foi carregada corretamente.message
+            Log To Console    message=/=====================/${\n}
         
         END
     ELSE IF    ${RESULT}==*Frase de erro no processamente da resposta por parte do modelo*
         Log    message=/=====================/${\n}
         Fail    A resposta do modelo não foi carregada. (O modelo não gerou nenhuma reposta)${\n}
         Log    message=/=====================/${\n}
+
+        Log To Console    message=/=====================/${\n}
+        Log To Console    message=A resposta do modelo não foi carregada. (O modelo não gerou nenhuma reposta)${\n}
+        Log To Console    message=/=====================/${\n}
     END
 
     
@@ -150,12 +166,20 @@ Verificar se os tamanhos da fonte estão visíveis no menu
                     Log    message=/=====================/${\n}
                     Log    message=O tamanho da fonte ${FONTS_SIZES[${counter}]} está habilitado! ${\n}
                     Log    message=/=====================/${\n}
+
+                    Log To Console    message=/=====================/${\n}
+                    Log To Console    message=O tamanho da fonte ${FONTS_SIZES[${counter}]} está habilitado! ${\n}
+                    Log To Console    message=/=====================/${\n}
                 END
             END
         ELSE
             Log    message=/=====================/${\n}
             Fail    A opção de tamanho de fonte, que tem o locator -> ${FONT_SIZE}, não está visível no menu.\${\n} 
             Log    message=/=====================/${\n}
+
+            Log To Console    message=/=====================/${\n}
+            Log To Console    message=A opção de tamanho de fonte, que tem o locator -> ${FONT_SIZE}, não está visível no menu.\${\n} 
+            Log To Console    message=/=====================/${\n}
         END
     END
 
@@ -164,18 +188,37 @@ Trocar o tamanho das fontes no chat via menu
 
     FOR    ${FONT_SIZE}    IN    @{LIST_OF_OPTIONS_FONT_SIZE}
         Click Element    locator=${FONT_SIZE}
-        Capture Page Screenshot
-        ${SUGESTÃO_STYLE}=    Get Element Attribute    locator=${SUGESTÃO-DE-CONVERSA-6}    attribute=style
+        ${css_font_size}=    Execute Javascript    return window.getComputedStyle(document.querySelector('${SUGESTÃO-DE-CONVERSA-6}')).getPropertyValue('font-size');
+
         FOR    ${counter}    IN RANGE    0    6    1
             IF    ${FONT_SIZE}==${LIST_OF_OPTIONS_FONT_SIZE[${counter}]}
                 Log    message=/=====================/${\n}
-                Log    message=Fonte escolhida: ${FONTS_SIZES[${counter}]} - Style da sugestão de conversa 6: ${SUGESTÃO_STYLE}${\n}
+                Log    message=Fonte escolhida: ${FONTS_SIZES[${counter}]} - Font-size da sugestão de conversa 6: ${css_font_size}${\n}
                 Log    message=/=====================/${\n}
+
+                Log To Console    message=/=====================/${\n}
+                Log To Console    message=Fonte escolhida: ${FONTS_SIZES[${counter}]} - Font-size da sugestão de conversa 6: ${css_font_size}${\n}
+                Log To Console    message=/=====================/${\n}
             END
+            
         END
-        Entrar no menu do chat
-        Entrar no histórico do chat 
     END
+#        Capture Page Screenshot
+#        ${SUGESTÃO_STYLE}=    Get Element Attribute    locator=${SUGESTÃO-DE-CONVERSA-6}    attribute=style
+#        FOR    ${counter}    IN RANGE    0    6    1
+#            IF    ${FONT_SIZE}==${LIST_OF_OPTIONS_FONT_SIZE[${counter}]}
+#                Log    message=/=====================/${\n}
+#                Log    message=Fonte escolhida: ${FONTS_SIZES[${counter}]} - Style da sugestão de conversa 6: ${SUGESTÃO_STYLE}${\n}
+#                Log    message=/=====================/${\n}
+
+#                Log To Console    message=/=====================/${\n}
+#                Log To Console    message=Fonte escolhida: ${FONTS_SIZES[${counter}]} - Style da sugestão de conversa 6: ${SUGESTÃO_STYLE}${\n}
+#                Log To Console    message=/=====================/${\n}
+#            END
+#        END
+#        Entrar no menu do chat
+#        Entrar no histórico do chat 
+#    END
 
 
 Verificar se os opções de transcrição da conversa estão visíveis no menu
@@ -194,10 +237,18 @@ Iniciar uma nova conversa
         Log    message=/=====================/${\n}
         Log    A nova conversa foi iniciada com sucesso! Pois a sugestão 6 apareceu na tela do chat.\${\n}
         Log    message=/=====================/${\n}
+
+        Log To Console    message=/=====================/${\n}
+        Log To Console    A nova conversa foi iniciada com sucesso! Pois a sugestão 6 apareceu na tela do chat.\${\n}
+        Log To Console    message=/=====================/${\n}
     ELSE
         Log    message=/=====================/${\n}
         Fail    A nova conversa não foi iniciada com sucesso! Pois a sugestão 6 não apareceu na tela do chat.${\n}
         Log    message=/=====================/${\n}
+
+        Log To Console    message=/=====================/${\n}
+        Log To Console    A nova conversa não foi iniciada com sucesso! Pois a sugestão 6 não apareceu na tela do chat.${\n}
+        Log To Console    message=/=====================/${\n}
     END
 
 
@@ -207,8 +258,12 @@ Iniciar uma nova conversa via histórico
     ${RESULT}=   Run Keyword And Return Status    Page Should Contain Element    locator=${SUGESTÃO-DE-CONVERSA-6}
     IF    ${RESULT}==${True}
         Log    message=/=====================/${\n}
-        Log    A nova conversa foi iniciada com sucesso! Pois a sugestão 6 apareceu na tela do chat.\${\n}
+        Log    A nova conversa foi iniciada com sucesso! Pois a sugestão 6 apareceu na tela do chat.${\n}
         Log    message=/=====================/${\n}
+
+        Log To Console    message=/=====================/${\n}
+        Log To Console    A nova conversa foi iniciada com sucesso! Pois a sugestão 6 apareceu na tela do chat.${\n}
+        Log To Console    message=/=====================/${\n}
     ELSE
         Log    message=/=====================/${\n}
         Fail    A nova conversa não foi iniciada com sucesso! Pois a sugestão 6 não apareceu na tela do chat.${\n}
@@ -301,17 +356,22 @@ Copiar resposta da IA
         Log To Console    message=A resposta da IA foi copiada com sucesso!${\n}
         Log To Console    message=/=====================/${\n}
     ELSE
-        Log    message=/=====================/${\n}
-        Fail    A resposta da IA não foi copiada${\n}
-        Log    message=/=====================/${\n}
+        Log        message=/=====================/${\n}
+        Fail       A resposta da IA não foi copiada${\n}
+        Log        message=/=====================/${\n}
 
         Log To Console    message=/=====================/${\n}
-        Fail    A resposta da IA não foi copiada${\n}
+        Log To Console    message=A resposta da IA não foi copiada${\n}
         Log To Console    message=/=====================/${\n}
     END
 
 
 Dar "Like" na resposta da IA
     Click Element    locator=${BTN-LIKE}
+    Capture Element Screenshot    locator=${BTN-LIKE}
+    
+Dar "Dislike" na resposta da IA
+    Click Element    locator=${BTN-DESLIKE}
+    Capture Element Screenshot    locator=${BTN-DESLIKE}
 
 

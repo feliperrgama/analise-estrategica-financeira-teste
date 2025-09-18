@@ -144,3 +144,12 @@ CT-015: Dar "Like" na resposta da IA
     Entrar no chat
     Enviar prompt ao chat via input de texto
     Dar "Like" na resposta da IA
+    
+C-016: Dar "Dislike" na resposta da IA
+    [Documentation]    Verificar se o usuário consegue dar "Dislike" na resposta da IA via botão de "Dislike"
+    Acessar url do projeto
+    Realizar login válido do usuário
+    Entrar no chat
+    Enviar prompt ao chat via input de texto
+    Dar "Dislike" na resposta da IA
+
