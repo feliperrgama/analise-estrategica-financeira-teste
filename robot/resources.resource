@@ -3,7 +3,7 @@ Library    SeleniumLibrary
 
 
 *** Variables ***
-${URL}        http://localhost:3000/
+${URL}        http://localhost:3002/
 
 ${LOCATOR_LOGO_CONEXAI_HOMEPAGE}     //*[@id="app"]/div/div[1]/div/div[1]/div[1]/img
 
