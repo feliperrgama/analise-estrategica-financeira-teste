@@ -1,0 +1,8 @@
+# Dependências para o teste:
+- Verificar resposta da IA no front com a resposta da IA na API
+- Verificar se a mensagem copiada é a mesma da IA
+- Fazer uma condicional para: 
+{
+    "keyword" = Iniciar uma nova conversa no histórico 
+    "line" = 204
+}

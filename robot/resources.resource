@@ -13,7 +13,7 @@ ${SUGESTÃO-DE-CONVERSA-6}    //*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/di
 
 ${INPUT_TEXT_CHAT}    //*[@id="app"]/div/div[1]/div/div[2]/div[2]/input
 
-${RESPOSTA-DO-MODEL}
+${RESPOSTA-DO-MODEL}    //*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div/div[2]
 
 @{LIST_OF_OPTIONS_FONT_SIZE}    //*[@id="app"]/div/div[1]/div/div[1]/div[3]/div/ul/li[1]    //*[@id="app"]/div/div[1]/div/div[1]/div[3]/div/ul/li[2]    //*[@id="app"]/div/div[1]/div/div[1]/div[3]/div/ul/li[3]    //*[@id="app"]/div/div[1]/div/div[1]/div[3]/div/ul/li[4]    //*[@id="app"]/div/div[1]/div/div[1]/div[3]/div/ul/li[5]    //*[@id="app"]/div/div[1]/div/div[1]/div[3]/div/ul/li[6]    //*[@id="app"]/div/div[1]/div/div[1]/div[3]/div/ul/li[7]
 
@@ -31,6 +31,9 @@ ${INPUT_EDITAR_TÍTULO_DA_CONVERSA}    //*[@id="app"]/div/div[1]/div/div[2]/div/
 
 ${INPUT_FILTRO_CONVERSAS}    //*[@id="app"]/div/div[1]/div/div[2]/div/div[1]/input
 
+${BTN-LIKE}    //*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div/div[2]/div[2]/button[3]
+
+${BTN-DESLIKE}    //*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div/div[2]/div[2]/button[4]
 
 
 
@@ -80,17 +83,35 @@ Entrar no chat
 Enviar prompt ao chat via sugestão de conversa
     Wait Until Element Is Visible    locator=${SUGESTÃO-DE-CONVERSA-6}  timeout=2s
     Click Element    locator=${SUGESTÃO-DE-CONVERSA-6}
-    Sleep    time_=10s
+    Sleep    time_=1.5s
 #    Capture Page Screenshot
     
 Verificar resposta do chat
-    ${RESPOSTA-DO-MODELO}=   Get Text    locator=//*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div/div[2]
-    Log    ${RESPOSTA-DO-MODELO}
-    IF    '${RESPOSTA-DO-MODELO}' != ''
-        Fail    A resposta do modelo não foi carregada corretamente.
-    ELSE
-        Log    A resposta do modelo foi carregada corretamente.
+    ${RESULT}=  Run Keyword And Return Status    Page Should Contain Element    locator=${BTN-LIKE}
+    IF    ${RESULT}==${True}
+        Log    message=/=====================/${\n}
+        Log    A resposta do modelo foi carregada! (O modelo gerou uma resposta)${\n}
+        Log    message=/=====================/${\n}
+
+        ${RESPOSTA_DO_MODELO}=   Get Text    locator=//*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div/div[2]
+        Log    ${RESPOSTA_DO_MODELO}
+        IF    ${RESPOSTA_DO_MODELO} == *Resposta do modelo via API*
+            Log    message=/=====================/${\n}
+            Log    message=A resposta do modelo foi carregada corretamente.
+            Log    message=/=====================/${\n}
+        ELSE
+            Log    message=/=====================/${\n}
+            Fail    A resposta do modelo não foi carregada corretamente.message
+            Log    message=/=====================/${\n}
+        
+        END
+    ELSE IF    ${RESULT}==*Frase de erro no processamente da resposta por parte do modelo*
+        Log    message=/=====================/${\n}
+        Fail    A resposta do modelo não foi carregada. (O modelo não gerou nenhuma reposta)${\n}
+        Log    message=/=====================/${\n}
     END
+
+    
 
 Enviar prompt ao chat via input de texto
     Wait Until Element Is Visible    locator=${INPUT_TEXT_CHAT}  timeout=2s
@@ -115,7 +136,7 @@ Entrar no menu do chat
 
 Entrar no histórico do chat
     Click Element    locator=/*[@id="app"]/div/div[1]/div/div[1]/div[2]/div/div/div[1]
-    Wait Until Element Is Visible    locator=//*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[n]    timeout=5s    #Conversa salva mais recente no histórico
+    Wait Until Element Is Visible    locator=//*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[1]    timeout=5s    #Conversa salva mais recente no histórico
     Wait Until Element Is Visible    locator=${INPUT_FILTRO_CONVERSAS}    timeout=5s
 
 
@@ -126,15 +147,15 @@ Verificar se os tamanhos da fonte estão visíveis no menu
         IF    ${RESULT}==${True}
             FOR    ${counter}    IN RANGE    0    6    1
                 IF    ${FONT_SIZE}==${LIST_OF_OPTIONS_FONT_SIZE[${counter}]}
-                    Log    message=/=====================/\${\n}
+                    Log    message=/=====================/${\n}
                     Log    message=O tamanho da fonte ${FONTS_SIZES[${counter}]} está habilitado! ${\n}
-                    Log    message=/=====================/\${\n}
+                    Log    message=/=====================/${\n}
                 END
             END
         ELSE
-            Log    message=/=====================/\${\n}
+            Log    message=/=====================/${\n}
             Fail    A opção de tamanho de fonte, que tem o locator -> ${FONT_SIZE}, não está visível no menu.\${\n} 
-            Log    message=/=====================/\${\n}
+            Log    message=/=====================/${\n}
         END
     END
 
@@ -147,9 +168,9 @@ Trocar o tamanho das fontes no chat via menu
         ${SUGESTÃO_STYLE}=    Get Element Attribute    locator=${SUGESTÃO-DE-CONVERSA-6}    attribute=style
         FOR    ${counter}    IN RANGE    0    6    1
             IF    ${FONT_SIZE}==${LIST_OF_OPTIONS_FONT_SIZE[${counter}]}
-                Log    message=/=====================/\${\n}
+                Log    message=/=====================/${\n}
                 Log    message=Fonte escolhida: ${FONTS_SIZES[${counter}]} - Style da sugestão de conversa 6: ${SUGESTÃO_STYLE}${\n}
-                Log    message=/=====================/\${\n}
+                Log    message=/=====================/${\n}
             END
         END
         Entrar no menu do chat
@@ -170,13 +191,13 @@ Iniciar uma nova conversa
     Click Element    locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/button[1]
     ${RESULT}=   Run Keyword And Return Status    Page Should Contain Element    locator=${SUGESTÃO-DE-CONVERSA-6}
     IF    ${RESULT}==${True}
-        Log    message=/=====================/\${\n}
+        Log    message=/=====================/${\n}
         Log    A nova conversa foi iniciada com sucesso! Pois a sugestão 6 apareceu na tela do chat.\${\n}
-        Log    message=/=====================/\${\n}
+        Log    message=/=====================/${\n}
     ELSE
-        Log    message=/=====================/\${\n}
+        Log    message=/=====================/${\n}
         Fail    A nova conversa não foi iniciada com sucesso! Pois a sugestão 6 não apareceu na tela do chat.${\n}
-        Log    message=/=====================/\${\n}
+        Log    message=/=====================/${\n}
     END
 
 
@@ -185,13 +206,17 @@ Iniciar uma nova conversa via histórico
     Sleep    time_=2.5s
     ${RESULT}=   Run Keyword And Return Status    Page Should Contain Element    locator=${SUGESTÃO-DE-CONVERSA-6}
     IF    ${RESULT}==${True}
-        Log    message=/=====================/\${\n}
+        Log    message=/=====================/${\n}
         Log    A nova conversa foi iniciada com sucesso! Pois a sugestão 6 apareceu na tela do chat.\${\n}
-        Log    message=/=====================/\${\n}
+        Log    message=/=====================/${\n}
     ELSE
-        Log    message=/=====================/\${\n}
+        Log    message=/=====================/${\n}
         Fail    A nova conversa não foi iniciada com sucesso! Pois a sugestão 6 não apareceu na tela do chat.${\n}
-        Log    message=/=====================/\${\n}
+        Log    message=/=====================/${\n}
+
+        Log To Console    message=/=====================/${\n}
+        Log To Console    A nova conversa não foi iniciada com sucesso! Pois a sugestão 6 não apareceu na tela do chat.${\n}
+        Log To Console    message=/=====================/${\n}
     END
 
 
@@ -217,11 +242,76 @@ Modificar o título de uma conversa no histórico do chat
     Click Element    locator=${BTN_EDITAR_TÍTULO_DA_CONVERSA}
     ${RESULT}=    Run Keyword And Return Status     Page Should Contain    text=Batatinha quando nasce
     IF    ${RESULT}==${True}
-        Log    message=/=====================/\${\n}
+        Log    message=/=====================/${\n}
         Log    O título da conversa foi modificado com sucesso! Pois o novo título apareceu no histórico.\${\n}
-        Log    message=/=====================/\${n}
+        Log    message=/=====================/${\n}
+
+        Log To Console   message=/=====================/${\n}
+        Log To Console   O título da conversa foi modificado com sucesso! Pois o novo título apareceu no histórico.\${\n}
+        Log To Console    message=/=====================/${\n}
     ELSE
-        Log    message=/=====================/\${\n}
+        Log    message=/=====================/${\n}
         Fail    O título da conversa não foi modificado com sucesso! Pois o novo título não apareceu no histórico.${\n}
-        Log    message=/=====================/\${\n}
+        Log    message=/=====================/${\n}
+
+        Log To Console    message=/=====================/${\n}
+        Log To Console    message=O título da conversa não foi modificado com sucesso! Pois o novo título não apareceu no histórico.${\n}
+        Log To Console    message=/=====================/${\n}
     END
+
+
+Excluir uma conversa no histórico do chat
+    ${TEXT}=    Get Text    locator=//*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[1]    #pegar o texto específico da conversa que serpa excluida
+    Click Element    locator=${BTN_REMOVER_CONVERSA}
+    Wait Until Element Is Visible    locator=//*[@id="app"]/div/div[9]/div/div[2]/div/button[2]    timeout=1.5s    #Botão para confirmar a exclusão da conversa
+    Click Element    locator=//*[@id="app"]/div/div[9]/div/div[2]/div/button[2]        #Clicar no botão para confirmar a exclusão da conversa
+    Sleep    time_=2s
+    Capture Page Screenshot
+    ${RESULT}=   Run Keyword And Return Status    Page Should Contain    text=${TEXT}
+    IF    ${RESULT}==${True}
+        Log    message=/=====================/${\n}
+        Log    A conversa foi excluída com sucesso! Pois o texto da conversa não aparece mais no histórico.${\n}
+        Log    message=/=====================/${\n}
+
+        Log To Console    message=/=====================/${\n}
+        Log To Console    message=A conversa foi excluída com sucesso! Pois o texto da conversa não aparece mais no histórico.${\n}
+        Log To Console    message=/=====================/${\n}
+    ELSE
+        Log    message=/=====================/${\n}
+        Fail    A conversa não foi excluída com sucesso! Pois o texto da conversa ainda aparece no histórico.${\n}
+        Log    message=/=====================/${\n}
+
+        Log To Console    message=/=====================/${\n}
+        Log To Console    message=A conversa não foi excluída com sucesso! Pois o texto da conversa ainda aparece no histórico.${\n}
+        Log To Console    message=/=====================/${\n}
+    END
+
+
+Copiar resposta da IA 
+    Click Element    locator=//*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div/div[2]/div[2]/button[2]
+    Click Element    locator=${INPUT_TEXT_CHAT}
+    Press Keys       ${INPUT_TEXT_CHAT}        CTRL+c
+    ${TEXT}=    Get Text    locator=${INPUT_TEXT_CHAT}
+    IF    ${TEXT}==*reposta do modelo via API*
+        Log    message=/=====================/${\n}
+        Log    A resposta da IA foi copiada com sucesso!${\n}
+        Log    message=/=====================/${\n}
+
+        Log To Console    message=/=====================/${\n}
+        Log To Console    message=A resposta da IA foi copiada com sucesso!${\n}
+        Log To Console    message=/=====================/${\n}
+    ELSE
+        Log    message=/=====================/${\n}
+        Fail    A resposta da IA não foi copiada${\n}
+        Log    message=/=====================/${\n}
+
+        Log To Console    message=/=====================/${\n}
+        Fail    A resposta da IA não foi copiada${\n}
+        Log To Console    message=/=====================/${\n}
+    END
+
+
+Dar "Like" na resposta da IA
+    Click Element    locator=${BTN-LIKE}
+
+

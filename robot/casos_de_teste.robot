@@ -109,7 +109,7 @@ CT-011: Verificar a geração de gráficos do modelo
     Verificar resposta do chat
     Verificar se há um gráfico na resposta do modelo via tela
 
-CT-012: MOdificar o título de uma conversa no histórico do chat
+CT-012: Modificar o título de uma conversa no histórico do chat
     [Documentation]    Verificar se o usuário consegue modificar o título de uma conversa no histórico do chat.
     Acessar url do projeto
     Realizar login válido do usuário
@@ -118,4 +118,29 @@ CT-012: MOdificar o título de uma conversa no histórico do chat
     Entrar no histórico do chat
     Entrar nas opções da conversa no histórico
     Modificar o título de uma conversa no histórico do chat
-    
+
+CT-013: Excluir uma conversa no histórico do chat
+    [Documentation]    Verificar se o usuário consegue excluir uma conversa no histórico do chat.
+    Acessar url do projeto
+    Realizar login válido do usuário
+    Entrar no chat
+    Entrar no menu do chat
+    Entrar no histórico do chat
+    Entrar nas opções da conversa no histórico
+    Excluir uma conversa no histórico do chat
+
+CT-014: Copiar resposta da IA
+    [Documentation]    Verificar se o usuário consegue copiar a resposta da IA via botão de copiar
+    Acessar url do projeto
+    Realizar login válido do usuário
+    Entrar no chat
+    Enviar prompt ao chat via input de texto
+    Copiar resposta da IA    
+
+CT-015: Dar "Like" na resposta da IA
+    [Documentation]    Verificar se o usuário consegue dar "Like" na resposta da IA via botão de "Like"
+    Acessar url do projeto
+    Realizar login válido do usuário
+    Entrar no chat
+    Enviar prompt ao chat via input de texto
+    Dar "Like" na resposta da IA
