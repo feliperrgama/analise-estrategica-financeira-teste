@@ -11,7 +11,11 @@ ${BTN-START}   //*[@class="btn"]   #X path do botão start do chat
 
 ${SUGESTÃO-DE-CONVERSA-6}    //*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div[1]/div[6]
 
+${SUGESTÃO_DE_CONVERSA_1}    //*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div[1]/div[1]
+
 ${INPUT_TEXT_CHAT}    //*[@id="app"]/div/div[1]/div/div[2]/div[2]/input
+
+${BTN_DE_ENVIAR_PROMPT}    //*[@id="app"]/div/div[1]/div/div[2]/div[2]/img
 
 ${RESPOSTA-DO-MODEL}    //*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div/div[2]
 
@@ -133,6 +137,8 @@ Enviar prompt ao chat via input de texto
     Wait Until Element Is Visible    locator=${INPUT_TEXT_CHAT}  timeout=2s
     Click Element    locator=${INPUT_TEXT_CHAT}
     Input Text    locator=${INPUT_TEXT_CHAT}   text=
+    Click Element    locator=${BTN_DE_ENVIAR_PROMPT}
+    Press Keys       ${INPUT_TEXT_CHAT}        ENTER
     Sleep    time_=10s
 
 Expandir a tela do chat
@@ -151,7 +157,7 @@ Entrar no menu do chat
     Wait Until Element Is Visible    locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/div/div/div[3]    #Opção 'Tamanho da fonte' no menu de opções
 
 Entrar no histórico do chat
-    Click Element    locator=/*[@id="app"]/div/div[1]/div/div[1]/div[2]/div/div/div[1]
+    Click Element    locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/div/div/div[1]
     Wait Until Element Is Visible    locator=//*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[1]    timeout=5s    #Conversa salva mais recente no histórico
     Wait Until Element Is Visible    locator=${INPUT_FILTRO_CONVERSAS}    timeout=5s
 
@@ -164,11 +170,11 @@ Verificar se os tamanhos da fonte estão visíveis no menu
             FOR    ${counter}    IN RANGE    0    6    1
                 IF    ${FONT_SIZE}==${LIST_OF_OPTIONS_FONT_SIZE[${counter}]}
                     Log    message=/=====================/${\n}
-                    Log    message=O tamanho da fonte ${FONTS_SIZES[${counter}]} está habilitado! ${\n}
+                    Log    message=O tamanho da fonte ${FONTS_SIZES[${counter}]} está visível! ${\n}
                     Log    message=/=====================/${\n}
 
                     Log To Console    message=/=====================/${\n}
-                    Log To Console    message=O tamanho da fonte ${FONTS_SIZES[${counter}]} está habilitado! ${\n}
+                    Log To Console    message=O tamanho da fonte ${FONTS_SIZES[${counter}]} está visível! ${\n}
                     Log To Console    message=/=====================/${\n}
                 END
             END
@@ -232,7 +238,8 @@ Escolher a opção de transcrição da conversa
 
 Iniciar uma nova conversa
     Click Element    locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/button[1]
-    ${RESULT}=   Run Keyword And Return Status    Page Should Contain Element    locator=${SUGESTÃO-DE-CONVERSA-6}
+    Sleep    time_=2.5s
+    ${RESULT}=   Run Keyword And Return Status    Page Should Contain Element    locator=${SUGESTÃO_DE_CONVERSA_1}
     IF    ${RESULT}==${True}
         Log    message=/=====================/${\n}
         Log    A nova conversa foi iniciada com sucesso! Pois a sugestão 6 apareceu na tela do chat.\${\n}
