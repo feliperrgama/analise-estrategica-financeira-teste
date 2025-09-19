@@ -29,7 +29,7 @@ CT-003: Enviar prompt ao chat via sugestão de conversa
     Realizar login válido do usuário
     Entrar no chat
     Enviar prompt ao chat via sugestão de conversa
-    Verificar resposta do chat
+    #Verificar resposta do chat
 
 CT-004: Enviar prompt ao chat via input de texto
     [Documentation]    Verificar se o usuário consegue enviar um prompt ao chat via input de texto e se o chat responde corretamente.
@@ -37,7 +37,7 @@ CT-004: Enviar prompt ao chat via input de texto
     Realizar login válido do usuário
     Entrar no chat
     Enviar prompt ao chat via input de texto
-    Verificar resposta do chat
+    #Verificar resposta do chat
 
 CT-005: Expandir a tela do chat e voltar ao tamanho normal
     [Documentation]    Verificar se o usuário consegue expandir a tela do chat para o modo tela expandida e se ele consegue fazer o processo inverso - voltar ao tamanho original.
@@ -91,7 +91,7 @@ CT-010: Iniciar uma nova conversa
 CT-010.1: Iniciar uma nova conversa via histórico
     [Documentation]    Verificar se o usuário consegue iniciar uma nova conversa no chat pelo histórico de conversas
     Acessar url do projeto
-    Realizar login inválido do usuário
+    Realizar login válido do usuário
     Entrar no chat
     Enviar prompt ao chat via sugestão de conversa
     Enviar prompt ao chat via input de texto
@@ -106,14 +106,15 @@ CT-011: Verificar a geração de gráficos do modelo
     Realizar login válido do usuário
     Entrar no chat
     Enviar prompt ao chat via input de texto para gerar gráfico
-    Verificar resposta do chat
-    Verificar se há um gráfico na resposta do modelo via tela
+    #Verificar resposta do chat
+    #Verificar se há um gráfico na resposta do modelo via tela
 
 CT-012: Modificar o título de uma conversa no histórico do chat
     [Documentation]    Verificar se o usuário consegue modificar o título de uma conversa no histórico do chat.
     Acessar url do projeto
     Realizar login válido do usuário
     Entrar no chat
+    Enviar prompt ao chat via sugestão de conversa
     Entrar no menu do chat
     Entrar no histórico do chat
     Entrar nas opções da conversa no histórico

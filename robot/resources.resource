@@ -3,7 +3,7 @@ Library    SeleniumLibrary
 
 
 *** Variables ***
-${URL}        http://localhost:3002/
+${URL}        http://localhost:3001/
 
 ${LOCATOR_LOGO_CONEXAI_HOMEPAGE}     //*[@id="app"]/div/div[1]/div/div[1]/div[1]/img
 
@@ -12,6 +12,8 @@ ${BTN-START}   //*[@class="btn"]   #X path do botão start do chat
 ${SUGESTÃO-DE-CONVERSA-6}    //*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div[1]/div[6]
 
 ${INPUT_TEXT_CHAT}    //*[@id="app"]/div/div[1]/div/div[2]/div[2]/input
+
+${SUGESTÃO_DE_CONVERSA_1}    //*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div[1]/div[1]
 
 ${RESPOSTA-DO-MODEL}    //*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div/div[2]
 
@@ -26,6 +28,8 @@ ${OPÇÕES_DA_CONVERSA}    //*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li
 ${BTN_EDITAR_TÍTULO_DA_CONVERSA}    //*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[1]/div[2]/div/div[1]
 
 ${BTN_REMOVER_CONVERSA}    //*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[n]/div[2]/div/div[2]
+
+${BTN_DE_ENVIAR_PROMPT}    //*[@id="app"]/div/div[1]/div/div[2]/div[2]/img
 
 ${INPUT_EDITAR_TÍTULO_DA_CONVERSA}    //*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li/div/div/input//div    #Talvez seja necessário remover este '//div' do final do locator
 
@@ -48,18 +52,15 @@ Fechar O Navegador
 
 Acessar url do projeto
     Go To    url=${URL}
-    Sleep    time_=5s
+    Sleep    time_=0.2s
 
 Realizar login válido do usuário
     Click Element    locator=//*[@id="username"]
-    Sleep    time_=3s
     Input Text    locator=//*[@id="username"]    text=cepedirestic36
     Click Element    locator=//*[@id="password"]
-    Sleep    time_=3s
     Input Password    locator=//*[@id="password"]    password=dC2^OuQ$g1O4
     Sleep    time_=1s
     Click Button    locator=//*[@id="app"]/div/div[8]/form/button
-    Sleep    time_=2s
     Wait Until Page Contains Element    locator=${BTN-START}  timeout=5s
 
 Realizar login inválido do usuário
@@ -76,14 +77,14 @@ Realizar login inválido do usuário
 Entrar no chat
     Wait Until Page Contains Element    locator=${BTN-START}  timeout=5s
     Click Element    locator=${BTN-START}
-    Sleep    time_=5s
+    Sleep    time_=1s
     Wait Until Page Contains Element    locator=${LOCATOR_LOGO_CONEXAI_HOMEPAGE}  timeout=5s
     Element Should Be Visible    locator=${LOCATOR_LOGO_CONEXAI_HOMEPAGE} 
 
 Enviar prompt ao chat via sugestão de conversa
     Wait Until Element Is Visible    locator=${SUGESTÃO-DE-CONVERSA-6}  timeout=2s
     Click Element    locator=${SUGESTÃO-DE-CONVERSA-6}
-    Sleep    time_=1.5s
+    Sleep    time_=10s
 #    Capture Page Screenshot
     
 Verificar resposta do chat
@@ -132,7 +133,9 @@ Verificar resposta do chat
 Enviar prompt ao chat via input de texto
     Wait Until Element Is Visible    locator=${INPUT_TEXT_CHAT}  timeout=2s
     Click Element    locator=${INPUT_TEXT_CHAT}
-    Input Text    locator=${INPUT_TEXT_CHAT}   text=
+    Input Text    locator=${INPUT_TEXT_CHAT}   text=Liste os nomes dos clientes que cancelaram e o valor total de seus contratos.
+    Click Element    locator=${BTN_DE_ENVIAR_PROMPT}
+    Press Keys       ${INPUT_TEXT_CHAT}        ENTER
     Sleep    time_=10s
 
 Expandir a tela do chat
@@ -151,7 +154,7 @@ Entrar no menu do chat
     Wait Until Element Is Visible    locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/div/div/div[3]    #Opção 'Tamanho da fonte' no menu de opções
 
 Entrar no histórico do chat
-    Click Element    locator=/*[@id="app"]/div/div[1]/div/div[1]/div[2]/div/div/div[1]
+    Click Element    locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/div/div/div[1]
     Wait Until Element Is Visible    locator=//*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[1]    timeout=5s    #Conversa salva mais recente no histórico
     Wait Until Element Is Visible    locator=${INPUT_FILTRO_CONVERSAS}    timeout=5s
 
@@ -231,8 +234,10 @@ Escolher a opção de transcrição da conversa
     
 
 Iniciar uma nova conversa
+    Sleep    time_=10s
     Click Element    locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/button[1]
-    ${RESULT}=   Run Keyword And Return Status    Page Should Contain Element    locator=${SUGESTÃO-DE-CONVERSA-6}
+    Sleep    time_=2.5s
+    ${RESULT}=   Run Keyword And Return Status    Page Should Contain Element    locator=${SUGESTÃO_DE_CONVERSA_1}
     IF    ${RESULT}==${True}
         Log    message=/=====================/${\n}
         Log    A nova conversa foi iniciada com sucesso! Pois a sugestão 6 apareceu na tela do chat.\${\n}
