@@ -21,6 +21,7 @@ ${SUGESTÃO_DE_CONVERSA_1}    //*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/di
 
 ${RESPOSTA-DO-MODEL}    //*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div/div[2]
 
+
 @{LIST_OF_OPTIONS_FONT_SIZE}    //*[@id="app"]/div/div[1]/div/div[1]/div[3]/div/ul/li[1]    //*[@id="app"]/div/div[1]/div/div[1]/div[3]/div/ul/li[2]    //*[@id="app"]/div/div[1]/div/div[1]/div[3]/div/ul/li[3]    //*[@id="app"]/div/div[1]/div/div[1]/div[3]/div/ul/li[4]    //*[@id="app"]/div/div[1]/div/div[1]/div[3]/div/ul/li[5]    //*[@id="app"]/div/div[1]/div/div[1]/div[3]/div/ul/li[6]    //*[@id="app"]/div/div[1]/div/div[1]/div[3]/div/ul/li[7]
 
 @{FONTS_SIZES}    12px    14px    16px    18px    20px    22px    24px
@@ -165,30 +166,54 @@ Entrar no histórico do chat
 
 Verificar se os tamanhos da fonte estão visíveis no menu
     Click Element    locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/div/div/div[3]
+    Sleep    time_=2s
     FOR    ${FONT_SIZE}    IN    @{LIST_OF_OPTIONS_FONT_SIZE}
-        ${RESULT}=    Run Keyword And Return Status    Page Should Contain Element    locator=${FONT_SIZE}
-        IF    ${RESULT}==${True}
-            FOR    ${counter}    IN RANGE    0    6    1
-                IF    ${FONT_SIZE}==${LIST_OF_OPTIONS_FONT_SIZE[${counter}]}
-                    Log    message=/=====================/${\n}
-                    Log    message=O tamanho da fonte ${FONTS_SIZES[${counter}]} está visível! ${\n}
-                    Log    message=/=====================/${\n}
-
-                    Log To Console    message=/=====================/${\n}
-                    Log To Console    message=O tamanho da fonte ${FONTS_SIZES[${counter}]} está visível! ${\n}
-                    Log To Console    message=/=====================/${\n}
-                END
-            END
-        ELSE
-            Log    message=/=====================/${\n}
-            Fail    A opção de tamanho de fonte, que tem o locator -> ${FONT_SIZE}, não está visível no menu.\${\n} 
-            Log    message=/=====================/${\n}
-
+        ${status_1}=    Run Keyword And Return Status    Wait Until Element Is Visible    locator=${FONT_SIZE}    timeout=2s
+        ${status_2}=    Run Keyword And Return Status    Page Should Contain Element    locator=${FONT_SIZE}
+        ${status_3}=    Run Keyword And Return Status    Element Should Be Visible    locator=${FONT_SIZE}
+    
+        IF    ${status_1}
             Log To Console    message=/=====================/${\n}
-            Log To Console    message=A opção de tamanho de fonte, que tem o locator -> ${FONT_SIZE}, não está visível no menu.\${\n} 
+            Log To Console    O status 1 funcionou ${\n}
+            Log To Console    message=/=====================/${\n}
+        ELSE IF    ${status_2}
+            Log To Console    message=/=====================/${\n}
+            Log To Console    O status 2 funcionou ${\n}
+            Log To Console    message=/=====================/${\n}
+        ELSE IF    ${status_3}
+            Log To Console    message=/=====================/${\n}
+            Log To Console    O status 3 funcionou ${\n}
+            Log To Console    message=/=====================/${\n}
+        ELSE
+            Log To Console    message=/=====================/${\n}
+            Fail    A opção de tamanho de fonte, que tem o locator -> ${FONT_SIZE}, não está visível no menu.\${\n} 
             Log To Console    message=/=====================/${\n}
         END
     END
+#    FOR    ${FONT_SIZE}    IN    @{LIST_OF_OPTIONS_FONT_SIZE}
+#        ${RESULT}=    Run Keyword And Return Status    Page Should Contain Element    locator=${FONT_SIZE}
+#        IF    ${RESULT}==${True}
+#            FOR    ${counter}    IN RANGE    0    6    1
+#                IF    ${FONT_SIZE}==${LIST_OF_OPTIONS_FONT_SIZE[${counter}]}
+#                    Log    message=/=====================/${\n}
+#                    Log    message=O tamanho da fonte ${FONTS_SIZES[${counter}]} está visível! ${\n}
+#                    Log    message=/=====================/${\n}
+#
+#                    Log To Console    message=/=====================/${\n}
+#                    Log To Console    message=O tamanho da fonte ${FONTS_SIZES[${counter}]} está visível! ${\n}
+#                    Log To Console    message=/=====================/${\n}
+#                END
+#            END
+#        ELSE
+#            Log    message=/=====================/${\n}
+#            Fail    A opção de tamanho de fonte, que tem o locator -> ${FONT_SIZE}, não está visível no menu.\${\n} 
+#            Log    message=/=====================/${\n}
+#
+#           Log To Console    message=/=====================/${\n}
+#            Log To Console    message=A opção de tamanho de fonte, que tem o locator -> ${FONT_SIZE}, não está visível no menu.\${\n} 
+#            Log To Console    message=/=====================/${\n}
+#        END
+    # END
 
 Trocar o tamanho das fontes no chat via menu
 #    Click Element    locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/div/div/div[3]
@@ -230,7 +255,8 @@ Trocar o tamanho das fontes no chat via menu
 
 Verificar se os opções de transcrição da conversa estão visíveis no menu
     Click Element    locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/div/div/div[2]
-    Wait Until Element Is Visible    locator=*Tenho que colocar aqui as opções de transcrição de conversa*    timeout=5s
+    Wait Until Element Is Visible    locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/div/div/div[2]/div/ul/li[1]    timeout=5s
+
     
 
 Escolher a opção de transcrição da conversa
@@ -305,7 +331,7 @@ Modificar o título de uma conversa no histórico do chat
     Input Text    locator=${INPUT_EDITAR_TÍTULO_DA_CONVERSA}    text=Batatinha quando nasce
     Click Element    locator=${BTN_EDITAR_TÍTULO_DA_CONVERSA}
     ${RESULT}=    Run Keyword And Return Status     Page Should Contain    text=Batatinha quando nasce
-    IF    ${RESULT}==${True}
+    IF    ${RESULT}
         Log    message=/=====================/${\n}
         Log    O título da conversa foi modificado com sucesso! Pois o novo título apareceu no histórico.\${\n}
         Log    message=/=====================/${\n}

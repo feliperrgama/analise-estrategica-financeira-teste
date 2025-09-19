@@ -59,6 +59,7 @@ CT-007: Entrar no histórico do chat via menu
     Realizar login válido do usuário
     Entrar no chat
     Entrar no menu do chat
+    Enviar prompt ao chat via input de texto
     Entrar no histórico do chat
 
 CT-008: Trocar o tamanho das fontes no chat via menu
