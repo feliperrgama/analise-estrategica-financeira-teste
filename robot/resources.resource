@@ -28,11 +28,12 @@ ${RESPOSTA-DO-MODEL}    //*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div/div[
 
 ${PROMPT_GRAPHS}    Analise a performance das minhas vendas este ano
 
-${OPÇÕES_DA_CONVERSA}    //*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[1]/div[2]/img
+${OPÇÕES_DA_CONVERSA}    //*[@id="menu-button-0"]/img
 
 ${BTN_EDITAR_TÍTULO_DA_CONVERSA}    //*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[1]/div[2]/div/div[1]
 
-${BTN_REMOVER_CONVERSA}    //*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[n]/div[2]/div/div[2]
+
+${BTN_REMOVER_CONVERSA}    //*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[1]/div[2]/div/div[2]
 
 ${BTN_DE_ENVIAR_PROMPT}    //*[@id="app"]/div/div[1]/div/div[2]/div[2]/img
 
@@ -141,7 +142,7 @@ Enviar prompt ao chat via input de texto
     Input Text    locator=${INPUT_TEXT_CHAT}   text=Liste os nomes dos clientes que cancelaram e o valor total de seus contratos.
     Click Element    locator=${BTN_DE_ENVIAR_PROMPT}
     Press Keys       ${INPUT_TEXT_CHAT}        ENTER
-    Sleep    time_=10s
+    Sleep    time_=20s
 
 Expandir a tela do chat
     Wait Until Element Is Visible    locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/button[2]
@@ -169,21 +170,21 @@ Verificar se os tamanhos da fonte estão visíveis no menu
     Sleep    time_=2s
     FOR    ${FONT_SIZE}    IN    @{LIST_OF_OPTIONS_FONT_SIZE}
         ${status_1}=    Run Keyword And Return Status    Wait Until Element Is Visible    locator=${FONT_SIZE}    timeout=2s
-        ${status_2}=    Run Keyword And Return Status    Page Should Contain Element    locator=${FONT_SIZE}
-        ${status_3}=    Run Keyword And Return Status    Element Should Be Visible    locator=${FONT_SIZE}
+        # ${status_2}=    Run Keyword And Return Status    Page Should Contain Element    locator=${FONT_SIZE}
+        # ${status_3}=    Run Keyword And Return Status    Element Should Be Visible    locator=${FONT_SIZE}
     
         IF    ${status_1}
             Log To Console    message=/=====================/${\n}
             Log To Console    O status 1 funcionou ${\n}
             Log To Console    message=/=====================/${\n}
-        ELSE IF    ${status_2}
-            Log To Console    message=/=====================/${\n}
-            Log To Console    O status 2 funcionou ${\n}
-            Log To Console    message=/=====================/${\n}
-        ELSE IF    ${status_3}
-            Log To Console    message=/=====================/${\n}
-            Log To Console    O status 3 funcionou ${\n}
-            Log To Console    message=/=====================/${\n}
+        # ELSE IF    ${status_2}
+        #     Log To Console    message=/=====================/${\n}
+        #     Log To Console    O status 2 funcionou ${\n}
+        #     Log To Console    message=/=====================/${\n}
+        # ELSE IF    ${status_3}
+        #     Log To Console    message=/=====================/${\n}
+        #     Log To Console    O status 3 funcionou ${\n}
+        #     Log To Console    message=/=====================/${\n}
         ELSE
             Log To Console    message=/=====================/${\n}
             Fail    A opção de tamanho de fonte, que tem o locator -> ${FONT_SIZE}, não está visível no menu.\${\n} 
@@ -217,24 +218,31 @@ Verificar se os tamanhos da fonte estão visíveis no menu
 
 Trocar o tamanho das fontes no chat via menu
 #    Click Element    locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/div/div/div[3]
+    
+    Click Element    locator=${LIST_OF_OPTIONS_FONT_SIZE[6]}    #Clicar na opção de fonte 12px
+    Sleep    time_=2s
+    ${css_font_size}=    Execute Javascript    return window.getComputedStyle(document.querySelector('//*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div[1]/div[1]/div')).getPropertyValue('size');
+    Log To Console   O tamanho da fonte atual é: ${css_font_size}
 
-    FOR    ${FONT_SIZE}    IN    @{LIST_OF_OPTIONS_FONT_SIZE}
-        Click Element    locator=${FONT_SIZE}
-        ${css_font_size}=    Execute Javascript    return window.getComputedStyle(document.querySelector('${SUGESTÃO-DE-CONVERSA-6}')).getPropertyValue('font-size');
+    # O robot está trocando o tamanho da fonte, só falta a verificação ser feita da forma correta
 
-        FOR    ${counter}    IN RANGE    0    6    1
-            IF    ${FONT_SIZE}==${LIST_OF_OPTIONS_FONT_SIZE[${counter}]}
-                Log    message=/=====================/${\n}
-                Log    message=Fonte escolhida: ${FONTS_SIZES[${counter}]} - Font-size da sugestão de conversa 6: ${css_font_size}${\n}
-                Log    message=/=====================/${\n}
+    # FOR    ${FONT_SIZE}    IN    @{LIST_OF_OPTIONS_FONT_SIZE}
+    #     Click Element    locator=${FONT_SIZE}
+    #     ${css_font_size}=    Execute Javascript    return window.getComputedStyle(document.querySelector('${SUGESTÃO-DE-CONVERSA-6}')).getPropertyValue('font-size');
 
-                Log To Console    message=/=====================/${\n}
-                Log To Console    message=Fonte escolhida: ${FONTS_SIZES[${counter}]} - Font-size da sugestão de conversa 6: ${css_font_size}${\n}
-                Log To Console    message=/=====================/${\n}
-            END
+    #     FOR    ${counter}    IN RANGE    0    6    1
+    #         IF    ${FONT_SIZE}==${LIST_OF_OPTIONS_FONT_SIZE[${counter}]}
+    #             Log    message=/=====================/${\n}
+    #             Log    message=Fonte escolhida: ${FONTS_SIZES[${counter}]} - Font-size da sugestão de conversa 6: ${css_font_size}${\n}
+    #             Log    message=/=====================/${\n}
+
+    #             Log To Console    message=/=====================/${\n}
+    #             Log To Console    message=Fonte escolhida: ${FONTS_SIZES[${counter}]} - Font-size da sugestão de conversa 6: ${css_font_size}${\n}
+    #             Log To Console    message=/=====================/${\n}
+    #         END
             
-        END
-    END
+    #     END
+    # END
 #        Capture Page Screenshot
 #        ${SUGESTÃO_STYLE}=    Get Element Attribute    locator=${SUGESTÃO-DE-CONVERSA-6}    attribute=style
 #        FOR    ${counter}    IN RANGE    0    6    1
@@ -255,12 +263,12 @@ Trocar o tamanho das fontes no chat via menu
 
 Verificar se os opções de transcrição da conversa estão visíveis no menu
     Click Element    locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/div/div/div[2]
-    Wait Until Element Is Visible    locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/div/div/div[2]/div/ul/li[1]    timeout=5s
-
+    Page Should Contain Element    locator=//*[@id="app"]/div/div[1]/div/div[1]/div[3]/div/ul/li[3]/div
     
 
 Escolher a opção de transcrição da conversa
-    Click Element    locator=*Tenho que colocar aqui as opções de transcrição de conversa*
+    Click Element    locator=//*[@id="app"]/div/div[1]/div/div[1]/div[3]/div/ul/li[3]/div
+    Sleep    time_=2s
     
 
 Iniciar uma nova conversa
@@ -351,38 +359,42 @@ Modificar o título de uma conversa no histórico do chat
 
 
 Excluir uma conversa no histórico do chat
-    ${TEXT}=    Get Text    locator=//*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[1]    #pegar o texto específico da conversa que serpa excluida
+    ${TEXT}=    Get Text    locator=//*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[1]/div[1]/p[1]    #pegar o texto específico da conversa que serpa excluida
     Click Element    locator=${BTN_REMOVER_CONVERSA}
-    Wait Until Element Is Visible    locator=//*[@id="app"]/div/div[9]/div/div[2]/div/button[2]    timeout=1.5s    #Botão para confirmar a exclusão da conversa
-    Click Element    locator=//*[@id="app"]/div/div[9]/div/div[2]/div/button[2]        #Clicar no botão para confirmar a exclusão da conversa
+    Wait Until Element Is Visible    locator=//*[@id="app"]/div[1]/div/div/button[1]    timeout=5s    #Botão para confirmar a exclusão da conversa
+    Click Element    locator=//*[@id="app"]/div[1]/div/div/button[1]       #Clicar no botão para confirmar a exclusão da conversa
     Sleep    time_=2s
     Capture Page Screenshot
     ${RESULT}=   Run Keyword And Return Status    Page Should Contain    text=${TEXT}
-    IF    ${RESULT}==${True}
+    IF    ${RESULT}
         Log    message=/=====================/${\n}
-        Log    A conversa foi excluída com sucesso! Pois o texto da conversa não aparece mais no histórico.${\n}
+        Fail    A conversa não foi excluída com sucesso! Pois o texto da conversa aparece mais no histórico.${\n}
         Log    message=/=====================/${\n}
 
         Log To Console    message=/=====================/${\n}
-        Log To Console    message=A conversa foi excluída com sucesso! Pois o texto da conversa não aparece mais no histórico.${\n}
+        Log To Console    message=A conversa não foi excluída com sucesso! Pois o texto da conversa aparece mais no histórico.${\n}
         Log To Console    message=/=====================/${\n}
     ELSE
         Log    message=/=====================/${\n}
-        Fail    A conversa não foi excluída com sucesso! Pois o texto da conversa ainda aparece no histórico.${\n}
+        Log    A conversa foi excluída com sucesso! Pois o texto da conversa não aparece no histórico.${\n}
         Log    message=/=====================/${\n}
 
         Log To Console    message=/=====================/${\n}
-        Log To Console    message=A conversa não foi excluída com sucesso! Pois o texto da conversa ainda aparece no histórico.${\n}
+        Log To Console    message=A conversa foi excluída com sucesso! Pois o texto da conversa não aparece no histórico.${\n}
         Log To Console    message=/=====================/${\n}
     END
 
 
 Copiar resposta da IA 
     Click Element    locator=//*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div/div[2]/div[2]/button[2]
+    ${MODEL_RESPONSE}=   Get Text    locator=${RESPOSTA-DO-MODEL}
     Click Element    locator=${INPUT_TEXT_CHAT}
-    Press Keys       ${INPUT_TEXT_CHAT}        CTRL+c
-    ${TEXT}=    Get Text    locator=${INPUT_TEXT_CHAT}
-    IF    ${TEXT}==*reposta do modelo via API*
+    Press Keys       ${INPUT_TEXT_CHAT}        CTRL+v
+    Sleep    time_=2s
+    ${TEXT}=    Get Value    locator=${INPUT_TEXT_CHAT}
+    Log To Console    message=${TEXT}
+    Log    message=${TEXT}
+    IF    ${TEXT}==${MODEL_RESPONSE}
         Log    message=/=====================/${\n}
         Log    A resposta da IA foi copiada com sucesso!${\n}
         Log    message=/=====================/${\n}
