@@ -58,8 +58,8 @@ CT-007: Entrar no histórico do chat via menu
     Acessar url do projeto
     Realizar login válido do usuário
     Entrar no chat
-    Entrar no menu do chat
     Enviar prompt ao chat via input de texto
+    Entrar no menu do chat
     Entrar no histórico do chat
 
 CT-008: Trocar o tamanho das fontes no chat via menu
@@ -126,6 +126,7 @@ CT-013: Excluir uma conversa no histórico do chat
     Acessar url do projeto
     Realizar login válido do usuário
     Entrar no chat
+    Enviar prompt ao chat via input de texto
     Entrar no menu do chat
     Entrar no histórico do chat
     Entrar nas opções da conversa no histórico
