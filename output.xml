@@ -1,187 +1,396 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 5.0.1 (Python 3.10.12 on win32)" generated="20250922 14:45:30.379" rpa="false" schemaversion="3">
+<robot generator="Robot 5.0.1 (Python 3.10.12 on win32)" generated="20250922 15:27:20.605" rpa="false" schemaversion="3">
 <suite id="s1" name="Casos De Teste" source="c:\Users\nicol\Documents\analise-estrategica-financeira-teste\robot\casos_de_teste.robot">
-<test id="s1-t1" name="C-016: Dar &quot;Dislike&quot; na resposta da IA" line="151">
+<test id="s1-t1" name="CT-013: Excluir uma conversa no histórico do chat" line="124">
 <kw name="Abrir O Navegador" library="resources" type="SETUP">
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>browser=chrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20250922 14:45:30.950" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
-<status status="PASS" starttime="20250922 14:45:30.949" endtime="20250922 14:45:33.748"/>
+<msg timestamp="20250922 15:27:21.077" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<status status="PASS" starttime="20250922 15:27:21.077" endtime="20250922 15:27:22.954"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20250922 14:45:33.749" endtime="20250922 14:45:34.128"/>
+<status status="PASS" starttime="20250922 15:27:22.955" endtime="20250922 15:27:23.020"/>
 </kw>
-<status status="PASS" starttime="20250922 14:45:30.948" endtime="20250922 14:45:34.131"/>
+<status status="PASS" starttime="20250922 15:27:21.076" endtime="20250922 15:27:23.020"/>
 </kw>
 <kw name="Acessar url do projeto" library="resources">
 <kw name="Go To" library="SeleniumLibrary">
 <arg>url=${URL}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<msg timestamp="20250922 14:45:34.150" level="INFO">Opening url 'http://localhost:3001/'</msg>
-<status status="PASS" starttime="20250922 14:45:34.148" endtime="20250922 14:45:36.028"/>
+<msg timestamp="20250922 15:27:23.032" level="INFO">Opening url 'http://localhost:3001/'</msg>
+<status status="PASS" starttime="20250922 15:27:23.027" endtime="20250922 15:27:24.334"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>time_=0.2s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20250922 14:45:36.237" level="INFO">Slept 200 milliseconds</msg>
-<status status="PASS" starttime="20250922 14:45:36.029" endtime="20250922 14:45:36.240"/>
+<msg timestamp="20250922 15:27:24.544" level="INFO">Slept 200 milliseconds</msg>
+<status status="PASS" starttime="20250922 15:27:24.334" endtime="20250922 15:27:24.544"/>
 </kw>
-<status status="PASS" starttime="20250922 14:45:34.146" endtime="20250922 14:45:36.241"/>
+<status status="PASS" starttime="20250922 15:27:23.022" endtime="20250922 15:27:24.545"/>
 </kw>
 <kw name="Realizar login válido do usuário" library="resources">
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>locator=//*[@id="username"]</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20250922 14:45:36.247" level="INFO">Clicking element '//*[@id="username"]'.</msg>
-<status status="PASS" starttime="20250922 14:45:36.245" endtime="20250922 14:45:36.428"/>
+<msg timestamp="20250922 15:27:24.548" level="INFO">Clicking element '//*[@id="username"]'.</msg>
+<status status="PASS" starttime="20250922 15:27:24.547" endtime="20250922 15:27:24.706"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>locator=//*[@id="username"]</arg>
 <arg>text=cepedirestic36</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20250922 14:45:36.431" level="INFO">Typing text 'cepedirestic36' into text field '//*[@id="username"]'.</msg>
-<status status="PASS" starttime="20250922 14:45:36.429" endtime="20250922 14:45:36.655"/>
+<msg timestamp="20250922 15:27:24.709" level="INFO">Typing text 'cepedirestic36' into text field '//*[@id="username"]'.</msg>
+<status status="PASS" starttime="20250922 15:27:24.706" endtime="20250922 15:27:24.863"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>locator=//*[@id="password"]</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20250922 14:45:36.656" level="INFO">Clicking element '//*[@id="password"]'.</msg>
-<status status="PASS" starttime="20250922 14:45:36.656" endtime="20250922 14:45:36.792"/>
+<msg timestamp="20250922 15:27:24.864" level="INFO">Clicking element '//*[@id="password"]'.</msg>
+<status status="PASS" starttime="20250922 15:27:24.864" endtime="20250922 15:27:24.938"/>
 </kw>
 <kw name="Input Password" library="SeleniumLibrary">
 <arg>locator=//*[@id="password"]</arg>
 <arg>password=dC2^OuQ$g1O4</arg>
 <doc>Types the given password into the text field identified by ``locator``.</doc>
-<msg timestamp="20250922 14:45:36.793" level="INFO">Typing password into text field '//*[@id="password"]'.</msg>
-<msg timestamp="20250922 14:45:36.905" level="INFO">Temporally setting log level to: NONE</msg>
-<msg timestamp="20250922 14:45:37.081" level="INFO">Log level changed from NONE to INFO.</msg>
-<status status="PASS" starttime="20250922 14:45:36.792" endtime="20250922 14:45:37.082"/>
+<msg timestamp="20250922 15:27:24.939" level="INFO">Typing password into text field '//*[@id="password"]'.</msg>
+<msg timestamp="20250922 15:27:24.973" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20250922 15:27:25.013" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20250922 15:27:24.938" endtime="20250922 15:27:25.014"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>time_=1s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20250922 14:45:38.084" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20250922 14:45:37.082" endtime="20250922 14:45:38.086"/>
+<msg timestamp="20250922 15:27:26.015" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20250922 15:27:25.014" endtime="20250922 15:27:26.016"/>
 </kw>
 <kw name="Click Button" library="SeleniumLibrary">
 <arg>locator=//*[@id="app"]/div/div[8]/form/button</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20250922 14:45:38.088" level="INFO">Clicking button '//*[@id="app"]/div/div[8]/form/button'.</msg>
-<status status="PASS" starttime="20250922 14:45:38.087" endtime="20250922 14:45:38.288"/>
+<msg timestamp="20250922 15:27:26.017" level="INFO">Clicking button '//*[@id="app"]/div/div[8]/form/button'.</msg>
+<status status="PASS" starttime="20250922 15:27:26.016" endtime="20250922 15:27:26.193"/>
 </kw>
 <kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
 <arg>locator=${BTN-START}</arg>
 <arg>timeout=5s</arg>
 <doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" starttime="20250922 14:45:38.289" endtime="20250922 14:45:39.560"/>
+<status status="PASS" starttime="20250922 15:27:26.194" endtime="20250922 15:27:27.537"/>
 </kw>
-<status status="PASS" starttime="20250922 14:45:36.243" endtime="20250922 14:45:39.563"/>
+<status status="PASS" starttime="20250922 15:27:24.546" endtime="20250922 15:27:27.537"/>
 </kw>
 <kw name="Entrar no chat" library="resources">
 <kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
 <arg>locator=${BTN-START}</arg>
 <arg>timeout=5s</arg>
 <doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" starttime="20250922 14:45:39.587" endtime="20250922 14:45:39.627"/>
+<status status="PASS" starttime="20250922 15:27:27.539" endtime="20250922 15:27:27.570"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>locator=${BTN-START}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20250922 14:45:39.636" level="INFO">Clicking element '//*[@class="btn"]'.</msg>
-<status status="PASS" starttime="20250922 14:45:39.628" endtime="20250922 14:45:39.846"/>
+<msg timestamp="20250922 15:27:27.571" level="INFO">Clicking element '//*[@class="btn"]'.</msg>
+<status status="PASS" starttime="20250922 15:27:27.570" endtime="20250922 15:27:27.688"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>time_=1s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20250922 14:45:40.849" level="INFO">Slept 1 second</msg>
-<status status="PASS" starttime="20250922 14:45:39.847" endtime="20250922 14:45:40.850"/>
+<msg timestamp="20250922 15:27:28.697" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20250922 15:27:27.689" endtime="20250922 15:27:28.698"/>
 </kw>
 <kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
 <arg>locator=${LOCATOR_LOGO_CONEXAI_HOMEPAGE}</arg>
 <arg>timeout=5s</arg>
 <doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" starttime="20250922 14:45:40.852" endtime="20250922 14:45:40.892"/>
+<status status="PASS" starttime="20250922 15:27:28.698" endtime="20250922 15:27:28.718"/>
 </kw>
 <kw name="Element Should Be Visible" library="SeleniumLibrary">
 <arg>locator=${LOCATOR_LOGO_CONEXAI_HOMEPAGE}</arg>
 <doc>Verifies that the element identified by ``locator`` is visible.</doc>
-<msg timestamp="20250922 14:45:40.947" level="INFO">Element '//*[@id="app"]/div/div[1]/div/div[1]/div[1]/img' is displayed.</msg>
-<status status="PASS" starttime="20250922 14:45:40.894" endtime="20250922 14:45:40.948"/>
+<msg timestamp="20250922 15:27:28.750" level="INFO">Element '//*[@id="app"]/div/div[1]/div/div[1]/div[1]/img' is displayed.</msg>
+<status status="PASS" starttime="20250922 15:27:28.720" endtime="20250922 15:27:28.751"/>
 </kw>
-<status status="PASS" starttime="20250922 14:45:39.578" endtime="20250922 14:45:40.949"/>
+<status status="PASS" starttime="20250922 15:27:27.538" endtime="20250922 15:27:28.751"/>
 </kw>
 <kw name="Enviar prompt ao chat via input de texto" library="resources">
 <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
 <arg>locator=${INPUT_TEXT_CHAT}</arg>
 <arg>timeout=2s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20250922 14:45:40.955" endtime="20250922 14:45:41.042"/>
+<status status="PASS" starttime="20250922 15:27:28.753" endtime="20250922 15:27:28.788"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>locator=${INPUT_TEXT_CHAT}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20250922 14:45:41.045" level="INFO">Clicking element '//*[@id="app"]/div/div[1]/div/div[2]/div[2]/input'.</msg>
-<status status="PASS" starttime="20250922 14:45:41.043" endtime="20250922 14:45:41.210"/>
+<msg timestamp="20250922 15:27:28.788" level="INFO">Clicking element '//*[@id="app"]/div/div[1]/div/div[2]/div[2]/input'.</msg>
+<status status="PASS" starttime="20250922 15:27:28.788" endtime="20250922 15:27:28.878"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>locator=${INPUT_TEXT_CHAT}</arg>
 <arg>text=Liste os nomes dos clientes que cancelaram e o valor total de seus contratos.</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20250922 14:45:41.212" level="INFO">Typing text 'Liste os nomes dos clientes que cancelaram e o valor total de seus contratos.' into text field '//*[@id="app"]/div/div[1]/div/div[2]/div[2]/input'.</msg>
-<status status="PASS" starttime="20250922 14:45:41.211" endtime="20250922 14:45:41.695"/>
+<msg timestamp="20250922 15:27:28.879" level="INFO">Typing text 'Liste os nomes dos clientes que cancelaram e o valor total de seus contratos.' into text field '//*[@id="app"]/div/div[1]/div/div[2]/div[2]/input'.</msg>
+<status status="PASS" starttime="20250922 15:27:28.878" endtime="20250922 15:27:29.139"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>locator=${BTN_DE_ENVIAR_PROMPT}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20250922 14:45:41.706" level="INFO">Clicking element '//*[@id="app"]/div/div[1]/div/div[2]/div[2]/img'.</msg>
-<status status="PASS" starttime="20250922 14:45:41.697" endtime="20250922 14:45:41.930"/>
+<msg timestamp="20250922 15:27:29.143" level="INFO">Clicking element '//*[@id="app"]/div/div[1]/div/div[2]/div[2]/img'.</msg>
+<status status="PASS" starttime="20250922 15:27:29.141" endtime="20250922 15:27:29.241"/>
 </kw>
 <kw name="Press Keys" library="SeleniumLibrary">
 <arg>${INPUT_TEXT_CHAT}</arg>
 <arg>ENTER</arg>
 <doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
-<msg timestamp="20250922 14:45:41.944" level="INFO">Sending key(s) ('ENTER',) to //*[@id="app"]/div/div[1]/div/div[2]/div[2]/input element.</msg>
-<msg timestamp="20250922 14:45:42.315" level="INFO">Pressing special key ENTER to element.</msg>
-<msg timestamp="20250922 14:45:42.316" level="INFO">Releasing special key ENTER.</msg>
-<status status="PASS" starttime="20250922 14:45:41.936" endtime="20250922 14:45:42.342"/>
+<msg timestamp="20250922 15:27:29.244" level="INFO">Sending key(s) ('ENTER',) to //*[@id="app"]/div/div[1]/div/div[2]/div[2]/input element.</msg>
+<msg timestamp="20250922 15:27:29.584" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20250922 15:27:29.584" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20250922 15:27:29.241" endtime="20250922 15:27:29.602"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>time_=20s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20250922 14:46:02.346" level="INFO">Slept 20 seconds</msg>
-<status status="PASS" starttime="20250922 14:45:42.344" endtime="20250922 14:46:02.347"/>
+<msg timestamp="20250922 15:27:49.611" level="INFO">Slept 20 seconds</msg>
+<status status="PASS" starttime="20250922 15:27:29.603" endtime="20250922 15:27:49.612"/>
 </kw>
-<status status="PASS" starttime="20250922 14:45:40.953" endtime="20250922 14:46:02.349"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>time_=20s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250922 15:28:09.619" level="INFO">Slept 20 seconds</msg>
+<status status="PASS" starttime="20250922 15:27:49.613" endtime="20250922 15:28:09.621"/>
 </kw>
-<kw name="Dar &quot;Dislike&quot; na resposta da IA" library="resources">
+<kw name="Sleep" library="BuiltIn">
+<arg>time_=20s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250922 15:28:29.631" level="INFO">Slept 20 seconds</msg>
+<status status="PASS" starttime="20250922 15:28:09.621" endtime="20250922 15:28:29.633"/>
+</kw>
+<status status="PASS" starttime="20250922 15:27:28.752" endtime="20250922 15:28:29.634"/>
+</kw>
+<kw name="Entrar no menu do chat" library="resources">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/div</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250922 15:28:29.638" endtime="20250922 15:28:29.676"/>
+</kw>
 <kw name="Click Element" library="SeleniumLibrary">
-<arg>locator=${BTN-DESLIKE}</arg>
+<arg>locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/div</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20250922 14:46:02.354" level="INFO">Clicking element '//*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div/div[2]/div[2]/button[4]'.</msg>
-<status status="PASS" starttime="20250922 14:46:02.352" endtime="20250922 14:46:02.608"/>
+<msg timestamp="20250922 15:28:29.677" level="INFO">Clicking element '//*[@id="app"]/div/div[1]/div/div[1]/div[2]/div'.</msg>
+<status status="PASS" starttime="20250922 15:28:29.677" endtime="20250922 15:28:29.807"/>
 </kw>
-<kw name="Capture Element Screenshot" library="SeleniumLibrary">
-<arg>locator=${BTN-DESLIKE}</arg>
-<doc>Captures a screenshot from the element identified by ``locator`` and embeds it into log file.</doc>
-<msg timestamp="20250922 14:46:02.813" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-element-screenshot-2.png"&gt;&lt;img src="selenium-element-screenshot-2.png" width="400px"&gt;&lt;/a&gt;</msg>
-<status status="PASS" starttime="20250922 14:46:02.610" endtime="20250922 14:46:02.814"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>time_=3.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250922 15:28:33.318" level="INFO">Slept 3 seconds 500 milliseconds</msg>
+<status status="PASS" starttime="20250922 15:28:29.808" endtime="20250922 15:28:33.320"/>
 </kw>
-<status status="PASS" starttime="20250922 14:46:02.351" endtime="20250922 14:46:02.815"/>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/div/div/div[1]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250922 15:28:33.320" endtime="20250922 15:28:33.355"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/div/div/div[2]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250922 15:28:33.355" endtime="20250922 15:28:33.385"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/div/div/div[3]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250922 15:28:33.386" endtime="20250922 15:28:33.417"/>
+</kw>
+<status status="PASS" starttime="20250922 15:28:29.636" endtime="20250922 15:28:33.417"/>
+</kw>
+<kw name="Entrar no histórico do chat" library="resources">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>locator=//*[@id="app"]/div/div[1]/div/div[1]/div[2]/div/div/div[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20250922 15:28:33.420" level="INFO">Clicking element '//*[@id="app"]/div/div[1]/div/div[1]/div[2]/div/div/div[1]'.</msg>
+<status status="PASS" starttime="20250922 15:28:33.419" endtime="20250922 15:28:33.527"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=//*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[1]</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250922 15:28:33.528" endtime="20250922 15:28:33.780"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=${INPUT_FILTRO_CONVERSAS}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250922 15:28:33.782" endtime="20250922 15:28:33.812"/>
+</kw>
+<status status="PASS" starttime="20250922 15:28:33.418" endtime="20250922 15:28:33.812"/>
+</kw>
+<kw name="Entrar nas opções da conversa no histórico" library="resources">
+<kw name="Sleep" library="BuiltIn">
+<arg>time_=10s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250922 15:28:43.823" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20250922 15:28:33.816" endtime="20250922 15:28:43.824"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>locator=${OPÇÕES_DA_CONVERSA}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20250922 15:28:43.827" level="INFO">Clicking element '//*[@id="menu-button-0"]/img'.</msg>
+<status status="PASS" starttime="20250922 15:28:43.825" endtime="20250922 15:28:43.943"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=${BTN_EDITAR_TÍTULO_DA_CONVERSA}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250922 15:28:43.943" endtime="20250922 15:28:43.978"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=${BTN_REMOVER_CONVERSA}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250922 15:28:43.979" endtime="20250922 15:28:44.010"/>
+</kw>
+<status status="PASS" starttime="20250922 15:28:33.813" endtime="20250922 15:28:44.010"/>
+</kw>
+<kw name="Excluir uma conversa no histórico do chat" library="resources">
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${TEXT}</var>
+<arg>locator=//*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[1]/div[1]/p[1]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20250922 15:28:44.055" level="INFO">${TEXT} = Liste os nomes dos clientes que cancelaram e o valor total de seus contratos.</msg>
+<status status="PASS" starttime="20250922 15:28:44.011" endtime="20250922 15:28:44.056"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>locator=${BTN_REMOVER_CONVERSA}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20250922 15:28:44.057" level="INFO">Clicking element '//*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[1]/div[2]/div/div[2]'.</msg>
+<status status="PASS" starttime="20250922 15:28:44.056" endtime="20250922 15:28:44.151"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>locator=//*[@id="app"]/div[1]/div/div/button[1]</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250922 15:28:44.151" endtime="20250922 15:28:44.185"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>locator=//*[@id="app"]/div[1]/div/div/button[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20250922 15:28:44.186" level="INFO">Clicking element '//*[@id="app"]/div[1]/div/div/button[1]'.</msg>
+<status status="PASS" starttime="20250922 15:28:44.186" endtime="20250922 15:28:44.300"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>time_=2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250922 15:28:46.303" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20250922 15:28:44.301" endtime="20250922 15:28:46.304"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20250922 15:28:46.467" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-4.png"&gt;&lt;img src="selenium-screenshot-4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20250922 15:28:46.305" endtime="20250922 15:28:46.468"/>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${RESULT}</var>
+<arg>Page Should Contain</arg>
+<arg>text=${TEXT}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>text=${TEXT}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20250922 15:28:46.790" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-5.png"&gt;&lt;img src="selenium-screenshot-5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20250922 15:28:46.791" level="FAIL">Page should have contained text 'Liste os nomes dos clientes que cancelaram e o valor total de seus contratos.' but did not.</msg>
+<status status="FAIL" starttime="20250922 15:28:46.469" endtime="20250922 15:28:46.796"/>
+</kw>
+<msg timestamp="20250922 15:28:46.797" level="INFO">${RESULT} = False</msg>
+<status status="PASS" starttime="20250922 15:28:46.468" endtime="20250922 15:28:46.797"/>
+</kw>
+<if>
+<branch type="IF" condition="${RESULT}">
+<kw name="Log" library="BuiltIn">
+<arg>message=/=====================/${\n}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20250922 15:28:46.798" endtime="20250922 15:28:46.799"/>
+</kw>
+<kw name="Fail" library="BuiltIn">
+<arg>A conversa não foi excluída com sucesso! Pois o texto da conversa aparece mais no histórico.${\n}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20250922 15:28:46.799" endtime="20250922 15:28:46.800"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>message=/=====================/${\n}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20250922 15:28:46.800" endtime="20250922 15:28:46.801"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>message=/=====================/${\n}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20250922 15:28:46.801" endtime="20250922 15:28:46.801"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>message=A conversa não foi excluída com sucesso! Pois o texto da conversa aparece mais no histórico.${\n}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20250922 15:28:46.802" endtime="20250922 15:28:46.802"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>message=/=====================/${\n}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20250922 15:28:46.803" endtime="20250922 15:28:46.803"/>
+</kw>
+<status status="NOT RUN" starttime="20250922 15:28:46.798" endtime="20250922 15:28:46.803"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>message=/=====================/${\n}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250922 15:28:46.805" level="INFO">/=====================/
+</msg>
+<status status="PASS" starttime="20250922 15:28:46.804" endtime="20250922 15:28:46.805"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>A conversa foi excluída com sucesso! Pois o texto da conversa não aparece no histórico.${\n}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250922 15:28:46.806" level="INFO">A conversa foi excluída com sucesso! Pois o texto da conversa não aparece no histórico.
+</msg>
+<status status="PASS" starttime="20250922 15:28:46.806" endtime="20250922 15:28:46.806"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>message=/=====================/${\n}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250922 15:28:46.807" level="INFO">/=====================/
+</msg>
+<status status="PASS" starttime="20250922 15:28:46.807" endtime="20250922 15:28:46.807"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>message=/=====================/${\n}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20250922 15:28:46.808" endtime="20250922 15:28:46.809"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>message=A conversa foi excluída com sucesso! Pois o texto da conversa não aparece no histórico.${\n}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20250922 15:28:46.809" endtime="20250922 15:28:46.811"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>message=/=====================/${\n}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20250922 15:28:46.811" endtime="20250922 15:28:46.815"/>
+</kw>
+<status status="PASS" starttime="20250922 15:28:46.804" endtime="20250922 15:28:46.816"/>
+</branch>
+<status status="PASS" starttime="20250922 15:28:46.798" endtime="20250922 15:28:46.816"/>
+</if>
+<status status="PASS" starttime="20250922 15:28:44.011" endtime="20250922 15:28:46.817"/>
 </kw>
 <kw name="Fechar O Navegador" library="resources" type="TEARDOWN">
 <kw name="Close All Browsers" library="SeleniumLibrary">
 <doc>Closes all open browsers and resets the browser cache.</doc>
-<status status="PASS" starttime="20250922 14:46:02.822" endtime="20250922 14:46:05.941"/>
+<status status="PASS" starttime="20250922 15:28:46.820" endtime="20250922 15:28:49.203"/>
 </kw>
-<status status="PASS" starttime="20250922 14:46:02.821" endtime="20250922 14:46:05.942"/>
+<status status="PASS" starttime="20250922 15:28:46.819" endtime="20250922 15:28:49.204"/>
 </kw>
-<doc>Verificar se o usuário consegue dar "Dislike" na resposta da IA via botão de "Dislike"</doc>
-<status status="PASS" starttime="20250922 14:45:30.946" endtime="20250922 14:46:05.943"/>
+<doc>Verificar se o usuário consegue excluir uma conversa no histórico do chat.</doc>
+<status status="PASS" starttime="20250922 15:27:21.074" endtime="20250922 15:28:49.205"/>
 </test>
 <doc>Casos de teste para a automatização de testes no projeto ConexAI</doc>
-<status status="PASS" starttime="20250922 14:45:30.386" endtime="20250922 14:46:05.951"/>
+<status status="PASS" starttime="20250922 15:27:20.613" endtime="20250922 15:28:49.209"/>
 </suite>
 <statistics>
 <total>

@@ -29,11 +29,8 @@ ${RESPOSTA-DO-MODEL}    //*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div/div[
 ${PROMPT_GRAPHS}    Analise a performance das minhas vendas este ano
 
 ${OPÇÕES_DA_CONVERSA}    //*[@id="menu-button-0"]/img
-${OPÇÕES_DA_CONVERSA}    //*[@id="menu-button-0"]/img
 
 ${BTN_EDITAR_TÍTULO_DA_CONVERSA}    //*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[1]/div[2]/div/div[1]
-
-${BTN_REMOVER_CONVERSA}    //*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[1]/div[2]/div/div[2]
 
 ${BTN_REMOVER_CONVERSA}    //*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[1]/div[2]/div/div[2]
 
@@ -382,10 +379,8 @@ Modificar o título de uma conversa no histórico do chat
 
 Excluir uma conversa no histórico do chat
     ${TEXT}=    Get Text    locator=//*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[1]/div[1]/p[1]    #pegar o texto específico da conversa que serpa excluida
-    ${TEXT}=    Get Text    locator=//*[@id="app"]/div/div[1]/div/div[2]/div/div[2]/ul/li[1]/div[1]/p[1]    #pegar o texto específico da conversa que serpa excluida
+
     Click Element    locator=${BTN_REMOVER_CONVERSA}
-    Wait Until Element Is Visible    locator=//*[@id="app"]/div[1]/div/div/button[1]    timeout=5s    #Botão para confirmar a exclusão da conversa
-    Click Element    locator=//*[@id="app"]/div[1]/div/div/button[1]       #Clicar no botão para confirmar a exclusão da conversa
     Wait Until Element Is Visible    locator=//*[@id="app"]/div[1]/div/div/button[1]    timeout=5s    #Botão para confirmar a exclusão da conversa
     Click Element    locator=//*[@id="app"]/div[1]/div/div/button[1]       #Clicar no botão para confirmar a exclusão da conversa
     Sleep    time_=2s
@@ -394,21 +389,17 @@ Excluir uma conversa no histórico do chat
     IF    ${RESULT}
         Log    message=/=====================/${\n}
         Fail    A conversa não foi excluída com sucesso! Pois o texto da conversa aparece mais no histórico.${\n}
-        Fail    A conversa não foi excluída com sucesso! Pois o texto da conversa aparece mais no histórico.${\n}
         Log    message=/=====================/${\n}
 
         Log To Console    message=/=====================/${\n}
-        Log To Console    message=A conversa não foi excluída com sucesso! Pois o texto da conversa aparece mais no histórico.${\n}
         Log To Console    message=A conversa não foi excluída com sucesso! Pois o texto da conversa aparece mais no histórico.${\n}
         Log To Console    message=/=====================/${\n}
     ELSE
         Log    message=/=====================/${\n}
         Log    A conversa foi excluída com sucesso! Pois o texto da conversa não aparece no histórico.${\n}
-        Log    A conversa foi excluída com sucesso! Pois o texto da conversa não aparece no histórico.${\n}
         Log    message=/=====================/${\n}
 
         Log To Console    message=/=====================/${\n}
-        Log To Console    message=A conversa foi excluída com sucesso! Pois o texto da conversa não aparece no histórico.${\n}
         Log To Console    message=A conversa foi excluída com sucesso! Pois o texto da conversa não aparece no histórico.${\n}
         Log To Console    message=/=====================/${\n}
     END
@@ -416,7 +407,6 @@ Excluir uma conversa no histórico do chat
 
 Copiar resposta da IA 
     Click Element    locator=//*[@id="app"]/div/div[1]/div/div[2]/div[1]/div/div/div[2]/div[2]/button[2]
-    ${MODEL_RESPONSE}=   Get Text    locator=${RESPOSTA-DO-MODEL}
     ${MODEL_RESPONSE}=   Get Text    locator=${RESPOSTA-DO-MODEL}
     Click Element    locator=${INPUT_TEXT_CHAT}
     Press Keys       ${INPUT_TEXT_CHAT}        CTRL+v
